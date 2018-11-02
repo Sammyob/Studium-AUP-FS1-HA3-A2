@@ -1,0 +1,51 @@
+public class Main
+{
+    public static void main(String[] args)
+    {
+        System.out.println("Willkommen zu Anagrammtester\nBitte das erste Wort eingeben: ");
+        char[] word1 = aup.IOUtils.readString().toCharArray();
+        System.out.println("Nun das zweite Wort: ");
+        char[] word2 = aup.IOUtils.readString().toCharArray();
+
+
+        //breche ab, falls die Eingaben übereinstimmen oder unterschiedlich lang sind
+        if(word1.length != word2.length || Arrays.equals(word1, word2)
+        {
+            System.out.println("Die zwei Eingaben bilden kein gültiges Anagramm");
+            return;
+        }
+
+        changeUppercase(word1);      //entferne mögliche Großbuchstaben
+        changeUppercase(word2);     //
+
+        Arrays.sort(word1);      //sortiere die Arrays nach den einzelnen Elementen
+        Arrays.sort(word2);     //deswegen das Entfernen der Großbuchstaben
+
+        System.out.println("überprüfe...");
+
+        for(int i = 0; i < word1.length; i++)
+        {
+            //breche ab, falls zwei der sortierten Elemente nicht übereinstimmen
+            if(word1[i] != word2[i])
+            {
+                System.out.println(word1[i] + " != " + word2[i]);
+                System.out.println("Wörter bilden KEIN Anagramm");
+                return;
+            }
+            System.out.println(word1[i] + " = " + word2[i]);
+        }
+
+        System.out.println("Wörter bilden ein Anagramm");
+    }
+
+    private static void changeUppercase(char[] c)
+    {
+        for (int i = 0; i < c.length; i++)
+        {
+            if(Character.isUpperCase(c[i]))
+            {
+                c[i] = Character.toLowerCase(c[i]);
+            }
+        }
+    }
+}
